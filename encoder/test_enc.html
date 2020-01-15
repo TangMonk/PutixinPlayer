@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>test</title>
+	<meta charset="UTF-8">
+	<script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+<button id="play">加载中...</button>
+</body>
+<script>
+	var playElm = document.getElementById('play')
+
+
+	window.onload = function(){
+
+		$.ajax({
+		   async: true,   // this will solve the problem
+		   type: "GET",
+		   url: "/enc_file.mp3",
+		   contentType: "application/text",
+		   success: function(data){
+		   		var result = data;
+		   		playElm.innerText = '播放'
+		   		playElm.addEventListener('click', function(){
+					var snd = new Audio("data:audio/wav;base64," + result);
+					snd.play();
+				})
+		   }
+		});
+
+		
+	}
+	
+</script>
+</html>

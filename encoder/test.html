@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>test</title>
+</head>
+<body>
+<button id="play">播放</button>
+</body>
+<script>
+	function httpGet(theUrl)
+	{
+	    var xmlHttp = new XMLHttpRequest();
+	    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+	    xmlHttp.send( null );
+	    return xmlHttp.responseText;
+	}
+
+	var result = httpGet("/enc_file.mp3")
+
+	var playElm = getElementById('play')
+	playElm.addEventListener('click', function(){
+		var snd = new Audio("data:audio/wav;base64," + result);
+		snd.play();
+	})
+	
+</script>
+</html>
